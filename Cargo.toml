@@ -1,0 +1,16 @@
+[package]
+name = "rust-cuda-template"
+version = "0.1.0"
+edition = "2021"
+links = "ruda"
+build = "build.rs"
+
+[dependencies]
+nalgebra = "0.31.2"
+
+[dev-dependencies]
+assert_approx_eq = "1.1.0"
+quickcheck = "1"
+
+[build-dependencies]
+cc = "1.0.74"
