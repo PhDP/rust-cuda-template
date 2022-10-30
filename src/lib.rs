@@ -1,5 +1,6 @@
 use nalgebra::DMatrix;
 
+#[link(name = "ruda", kind = "static")]
 extern "C" {
     pub fn ruda_mm32(
         a: *const f32,

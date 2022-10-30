@@ -10,7 +10,7 @@ endif ()
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 option(RUDA_TEST      "RUDA_TEST"   OFF)
-option(RUDA_STATIC    "Make a static library" OFF)
+option(RUDA_STATIC    "Make a static library" ON)
 
 if (RUDA_STATIC)
   set(RUDA_LIB_TYPE STATIC)
