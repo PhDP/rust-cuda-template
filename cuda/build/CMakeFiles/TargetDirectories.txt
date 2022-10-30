@@ -1,9 +1,0 @@
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/install/strip.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/install/local.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/install.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/list_install_components.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/rebuild_cache.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/edit_cache.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/test.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/test_ruda.dir
-/home/phdp/rust-cuda-template/ruda/build/CMakeFiles/ruda.dir
