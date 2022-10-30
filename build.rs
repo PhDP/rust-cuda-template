@@ -6,7 +6,7 @@ fn main() {
         .include("cuda")
         .flag("-cudart=shared")
         .flag("-O2")
-        .file("cuda/matrix.cu")
+        .files(&["cuda/matrix.cu"])
         .compile("libruda.a");
  
     println!("cargo:rustc-link-search=native=/usr/local/cuda/lib64");
