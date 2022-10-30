@@ -5,16 +5,22 @@ extern "C" {
     pub fn ruda_mm32(
         a: *const f32,
         b: *const f32,
-        m: usize,
-        k: usize,
-        n: usize
+        m: libc::c_int,
+        k: libc::c_int,
+        n: libc::c_int
     ) -> *mut f32;
 }
 
 pub fn gpu_mm(lhs: &DMatrix<f32>, rhs: &DMatrix<f32>) -> DMatrix<f32> {
     unsafe {
         let elems = std::slice::from_raw_parts(
-            ruda_mm32(lhs.as_ptr(), rhs.as_ptr(), lhs.nrows(), lhs.ncols(), rhs.ncols()),
+            ruda_mm32(
+                lhs.as_ptr(),
+                rhs.as_ptr(),
+                lhs.nrows() as libc::c_int,
+                lhs.ncols() as libc::c_int,
+                rhs.ncols() as libc::c_int
+            ),
             lhs.nrows() * rhs.ncols()
         );
         DMatrix::from_column_slice(lhs.nrows(), rhs.ncols(), elems)

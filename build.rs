@@ -2,11 +2,11 @@ fn main() {
     cc::Build::new()
         .out_dir(std::path::Path::new("lib"))
         .cuda(true)
+        .include("cuda/include")
+        .include("cuda")
         .flag("-cudart=shared")
-        .include("ruda/include")
-        .include("ruda")
-        .file("ruda/matrix.cu")
         .flag("-O2")
+        .file("cuda/matrix.cu")
         .compile("libruda.a");
  
     println!("cargo:rustc-link-search=native=/usr/local/cuda/lib64");

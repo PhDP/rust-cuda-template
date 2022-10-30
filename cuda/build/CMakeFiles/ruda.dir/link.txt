@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruda.a  CMakeFiles/ruda.dir/ruda_generated_matrix.cu.o
+/usr/bin/ranlib libruda.a

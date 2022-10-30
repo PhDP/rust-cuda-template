@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG  -rdynamic CMakeFiles/test_ruda.dir/test/main.c.o  -o test_ruda  -Wl,-rpath,/usr/local/cuda/lib64 libruda.a -lm /usr/local/cuda/lib64/libcudart_static.a -lpthread -ldl -lrt /usr/local/cuda/lib64/libcublas.so -lpthread -ldl -lrt /usr/local/cuda/lib64/libcublas.so -lm 
