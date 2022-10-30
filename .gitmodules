@@ -1,0 +1,6 @@
+[submodule "cuda/test/gtest"]
+	path = cuda/test/gtest
+	url = https://github.com/abseil/googletest.git
+[submodule "cuda/bench/benchmark"]
+	path = cuda/bench/benchmark
+	url = https://github.com/google/benchmark.git

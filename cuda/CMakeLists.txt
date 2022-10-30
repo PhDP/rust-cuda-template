@@ -9,8 +9,9 @@ endif ()
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
-option(RUDA_TEST      "RUDA_TEST"   OFF)
-option(RUDA_STATIC    "Make a static library" ON)
+option(RUDA_TEST      "Tests with Google Test"            OFF)
+option(RUDA_BENCH     "Bechmarks with Google Benchmark"   OFF)
+option(RUDA_STATIC    "Make a static library"             ON)
 
 if (RUDA_STATIC)
   set(RUDA_LIB_TYPE STATIC)
@@ -21,6 +22,9 @@ endif ()
 find_package(CUDA REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Math)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(. include test ${CUDA_INCLUDE_DIRS})
 
@@ -37,17 +41,13 @@ target_link_libraries(ruda
 install(TARGETS ruda LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 install(DIRECTORY ./include/ruda DESTINATION include)
 
-
 if (RUDA_TEST)
   enable_testing()
-  add_executable(test_ruda test/main.c)
+  add_subdirectory(test)
+endif ()
 
-  target_link_libraries(test_ruda ruda ${MATH_LIBRARIES})
-
-  add_test(
-    NAME tests
-    COMMAND test_ruda
-  )
+if (RUDA_BENCH)
+  add_subdirectory(bench)
 endif ()
 
 message(STATUS "")
@@ -56,6 +56,7 @@ message(STATUS "  CMAKE_GENERATOR      : ${CMAKE_GENERATOR}")
 message(STATUS "  Compiler ID          : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "  Build type           : ${CMAKE_BUILD_TYPE}")
 message(STATUS "  Build tests          : ${RUDA_TEST}")
+message(STATUS "  Build benchmarks     : ${RUDA_BENCH}")
 message(STATUS "  Library name         : ruda")
 message(STATUS "  Library type         : ${RUDA_LIB_TYPE}")
 message(STATUS "  FoundCUDA            : ${CUDA_FOUND}")

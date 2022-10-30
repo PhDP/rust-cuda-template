@@ -1,15 +1,8 @@
-// https://github.com/sheredom/utest.h
-
+#include <iostream>
+#include "gtest/gtest.h"
 #include "ruda/matrix.h"
-#include "utest.h"
 
-UTEST_MAIN();
-
-int approx(float x, float y) {
-  return x < y? approx(y, x) : x - y < 0.1;
-}
-
-UTEST(rudatest, matrixmultiplication) {
+TEST(Ruda, MatrixMultiplication) {
   const int m = 4;
   const int k = 2;
   const int n = 3;
@@ -43,21 +36,20 @@ print(c)
 
   float* matrix_c = ruda_mm32(matrix_a, matrix_b, m, k, n);
 
-  ASSERT_TRUE(approx(matrix_c[0], -628.1329));
-  ASSERT_TRUE(approx(matrix_c[1], -233.8925));
-  ASSERT_TRUE(approx(matrix_c[2], 1894.105));
-  ASSERT_TRUE(approx(matrix_c[3], -16.5669));
-  ASSERT_TRUE(approx(matrix_c[4], 627.819));
-  ASSERT_TRUE(approx(matrix_c[5], 276.977));
-  ASSERT_TRUE(approx(matrix_c[6], -1872.403));
-  ASSERT_TRUE(approx(matrix_c[7], 155.535));
-  ASSERT_TRUE(approx(matrix_c[8], -89.2133));
-  ASSERT_TRUE(approx(matrix_c[9], -509.4725));
-  ASSERT_TRUE(approx(matrix_c[10], 40.21));
-  ASSERT_TRUE(approx(matrix_c[11], -1534.4313));
+  EXPECT_FLOAT_EQ(matrix_c[0], -628.1329);
+  EXPECT_FLOAT_EQ(matrix_c[1], -233.8925);
+  EXPECT_FLOAT_EQ(matrix_c[2], 1894.105);
+  EXPECT_FLOAT_EQ(matrix_c[3], -16.5669);
+  EXPECT_FLOAT_EQ(matrix_c[4], 627.819);
+  EXPECT_FLOAT_EQ(matrix_c[5], 276.977);
+  EXPECT_FLOAT_EQ(matrix_c[6], -1872.403);
+  EXPECT_FLOAT_EQ(matrix_c[7], 155.535);
+  EXPECT_FLOAT_EQ(matrix_c[8], -89.2133);
+  EXPECT_FLOAT_EQ(matrix_c[9], -509.4725);
+  EXPECT_FLOAT_EQ(matrix_c[10], 40.21);
+  EXPECT_FLOAT_EQ(matrix_c[11], -1534.4313);
 
   free(matrix_a);
   free(matrix_b);
   free(matrix_c);
 }
-

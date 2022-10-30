@@ -1,5 +1,5 @@
-#ifndef RUDA_MM_H_
-#define RUDA_MM_H_
+#ifndef RUDA_MATRIX_H_
+#define RUDA_MATRIX_H_
 
 #ifdef __cplusplus
 extern "C" {
