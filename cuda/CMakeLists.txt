@@ -23,8 +23,8 @@ find_package(CUDA REQUIRED)
 find_package(Threads REQUIRED)
 find_package(Math)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(. include test ${CUDA_INCLUDE_DIRS})
 
