@@ -2,6 +2,7 @@ use nalgebra::DMatrix;
 
 #[link(name = "ruda", kind = "static")]
 extern "C" {
+    // Function declaration for the CUDA kernel in cuda/matrix.cu
     pub fn ruda_mm32(
         a: *const f32,
         b: *const f32,
@@ -11,19 +12,24 @@ extern "C" {
     ) -> *mut f32;
 }
 
+// Multiply two matrices using the CUDA kernel. Like CUDA, nalgebra's
+// matrices adopt a column-major order by default.
 pub fn gpu_mm(lhs: &DMatrix<f32>, rhs: &DMatrix<f32>) -> DMatrix<f32> {
     unsafe {
-        let elems = std::slice::from_raw_parts(
-            ruda_mm32(
-                lhs.as_ptr(),
-                rhs.as_ptr(),
-                lhs.nrows() as libc::c_int,
-                lhs.ncols() as libc::c_int,
-                rhs.ncols() as libc::c_int
-            ),
-            lhs.nrows() * rhs.ncols()
-        );
-        DMatrix::from_column_slice(lhs.nrows(), rhs.ncols(), elems)
+        DMatrix::from_column_slice(
+            lhs.nrows(),
+            rhs.ncols(),
+            std::slice::from_raw_parts(
+                ruda_mm32(
+                    lhs.as_ptr(),
+                    rhs.as_ptr(),
+                    lhs.nrows() as libc::c_int,
+                    lhs.ncols() as libc::c_int,
+                    rhs.ncols() as libc::c_int
+                ),
+                lhs.nrows() * rhs.ncols()
+            )
+        )
     }
 }
 
