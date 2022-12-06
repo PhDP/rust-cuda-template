@@ -6,6 +6,7 @@ build = "build.rs"
 
 [dependencies]
 nalgebra = "0.31.2"
+ndarray = "0.15.6"
 libc = "0.2.137"
 
 [dev-dependencies]

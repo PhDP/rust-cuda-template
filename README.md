@@ -1,6 +1,7 @@
 # rust-cuda-template
 
-Small example of how to compile & use cuda kernels with Rust.
+Small example of how to compile & use cuda kernels with Rust
+using both **nalgebra** and **ndarray**.
 
 'src/lib.rs' shows how to use the kernel in 'cuda/matrix.cu'.
 
